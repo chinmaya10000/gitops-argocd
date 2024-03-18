@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: heliocentric-model-no-pluto
-        image: siddharth67/heliocentric-solar-system:no-pluto
+        image: chinmayapradhan/heliocentric-solar-system:no-pluto
