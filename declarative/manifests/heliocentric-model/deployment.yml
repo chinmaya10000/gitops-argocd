@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: heliocentric-model
-        image: siddharth67/heliocentric-solar-system:v1
+        image: chinmayapradhan/heliocentric-solar-system:v1
