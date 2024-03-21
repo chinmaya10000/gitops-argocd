@@ -16,7 +16,7 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: chinmayapradhan/solar-system:v6
+      - image: chinmayapradhan/solar-system:v3
         name: solar-system
         imagePullPolicy: Always
         ports: 
