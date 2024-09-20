@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: main-rules
+  namespace: argocd
+  labels:
+    app: kube-prometheus-stack
+    release: my-kube-prometheus-stack
+spec:
+  groups:
+  - name: argocd.rules
+    rules:
+    - alert: ArgoApplicationOutOfSync
+      expr: argocd_app_info{sync_status="OutOfSynced"} == 1
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        description: The ArgoCD application '{{ $labels.name }}' is out of sync with the source repository.
+        summary: ArgoCD application is out of sync
+    
