@@ -10,7 +10,9 @@ spec:
     routes:
     - matchers:
       - name: alertname
-        value: ArgoApplicationOutOfSync
+        value: ArgocdServiceNotSynced
+      - name: alertname
+        value: ArgocdServiceUnhealthy
       repeatInterval: 10m 
   receivers:
   - name: 'email'

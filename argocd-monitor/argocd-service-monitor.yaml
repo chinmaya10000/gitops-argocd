@@ -49,7 +49,45 @@ spec:
       app.kubernetes.io/name: argocd-applicationset-controller
   endpoints:
   - port: metrics
-
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-dex-server
+  labels:
+    release: my-kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-dex-server
+  endpoints:
+    - port: metrics
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-redis-haproxy-metrics
+  labels:
+    release: my-kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-redis-ha-haproxy
+  endpoints:
+  - port: http-exporter-port
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: argocd-notifications-controller
+  labels:
+    release: my-kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-notifications-controller-metrics
+  endpoints:
+    - port: metrics
 
 
 
