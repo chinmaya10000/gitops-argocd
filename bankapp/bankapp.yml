@@ -21,7 +21,10 @@ spec:
         - containerPort: 8080
         env:
         - name: SPRING_DATASOURCE_URL
-          value: jdbc:mysql://mysql-service:3306/bankappdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+          valueFrom:
+          configMapKeyRef:
+            name: mysql-config
+            key: spring.datasource.url
         - name: SPRING_DATASOURCE_USERNAME
           valueFrom:
             secretKeyRef:
