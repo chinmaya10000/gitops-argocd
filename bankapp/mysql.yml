@@ -18,9 +18,15 @@ spec:
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "Test@123"
+          valueFrom: 
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-root-password
         - name: MYSQL_DATABASE
-          value: "bankappdb"
+          valueFrom: 
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-database
         ports:
         - containerPort: 3306
           name: mysql

@@ -23,9 +23,15 @@ spec:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:mysql://mysql-service:3306/bankappdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
         - name: SPRING_DATASOURCE_USERNAME
-          value: root
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-username
         - name: SPRING_DATASOURCE_PASSWORD
-          value: Test@123
+          valueFrom: 
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-root-password
 --- 
 apiVersion: v1
 kind: Service
