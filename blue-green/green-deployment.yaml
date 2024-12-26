@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solar-system-green
+  labels:
+    app: solar-system
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: solar-system
+      version: v2 
+      color: green
+  template:
+    metadata:
+      labels:
+        app: solar-system
+        version: v2
+        color: green
+    spec:
+      containers:
+        - name: solar-system
+          image: chinmayapradhan/solar-system:v9
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
