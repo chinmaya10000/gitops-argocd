@@ -41,3 +41,23 @@ spec:
   - port: 3306
   selector:
     app: mysql
+
+
+
+
+# kubectl exec -it mysql-statefulset-0 -n your-namespace -- bash
+
+# Use the root password from your Kubernetes secret
+# kubectl get secret mysql-secret -n your-namespace -o jsonpath='{.data.mysql-root-password}' | base64 --decode
+
+# Run the following command to log in to MySQL:
+# mysql -u root -p
+
+# Show all databases:
+# SHOW DATABASES;
+
+# Switch to the database:
+# USE bankappdb;
+
+# Show tables:
+# SHOW TABLES;

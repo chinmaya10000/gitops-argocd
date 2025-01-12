@@ -11,4 +11,4 @@ spec:
     targetPort: 80 #change to 80
   selector:
     app: solar-system
-  type: NodePort
+  type: LoadBalancer
