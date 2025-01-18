@@ -16,7 +16,7 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: chinmayapradhan/solar-system:v9
+      - image: chinmayapradhan/solar-system:v6
         name: solar-system
         ports: 
         - containerPort: 80
