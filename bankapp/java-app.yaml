@@ -15,9 +15,12 @@ spec:
       labels:
         app: java-app
     spec:
+      imagePullSecrets:
+      - name: my-ecr-registry-key
       containers:
       - name: java-app
         image: 156041433917.dkr.ecr.us-east-2.amazonaws.com/bank-app:1.0-2
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env: 
