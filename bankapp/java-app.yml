@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: java-app
-        image: 156041433917.dkr.ecr.us-east-2.amazonaws.com/bankapp:v1
+        image: 156041433917.dkr.ecr.us-east-2.amazonaws.com/bank-app:v1
         ports:
         - containerPort: 8080
         env: 
