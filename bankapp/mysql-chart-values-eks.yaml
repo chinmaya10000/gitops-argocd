@@ -1,33 +1,33 @@
-architecture: replication
-auth:
-  rootPassword: Test@123
-  database: bankappdb
+# architecture: replication
+# auth:
+#   rootPassword: Test@123
+#   database: bankappdb
 
-# Enable init container that changes the owner and group of the persistent volume mountpoint to runAsUser:fsGroup
-volumePermissions:
-  enabled: true
+# # Enable init container that changes the owner and group of the persistent volume mountpoint to runAsUser:fsGroup
+# volumePermissions:
+#   enabled: true
 
-primary:
-  persistence:
-    enabled: false
+# primary:
+#   persistence:
+#     enabled: false
 
-secondary:
-  # 1 primary and 2 secondary replicas
-  replicaCount: 2
-  persistence:
-    enabled: true # Must be true to persist data across pods
-    size: 8Gi # Specify the volume size
-    storageClass: gp2 # Storage class for EKS volumes
-    accessModes:
-      - ReadWriteOnce # Correct access mode for gp2 volumes
+# secondary:
+#   # 1 primary and 2 secondary replicas
+#   replicaCount: 2
+#   persistence:
+#     enabled: true # Must be true to persist data across pods
+#     size: 8Gi # Specify the volume size
+#     storageClass: gp2 # Storage class for EKS volumes
+#     accessModes:
+#       - ReadWriteOnce # Correct access mode for gp2 volumes
 
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
-    additionalLabels:
-      release: my-kube-prometheus-stack
+# metrics:
+#   enabled: true
+#   serviceMonitor:
+#     enabled: true
+#     additionalLabels:
+#       release: my-kube-prometheus-stack
 
 
 
-# helm install mysql-release bitnami/mysql -f mysql-chart-values-eks.yaml -n bankapp
+# # helm install mysql-release bitnami/mysql -f mysql-chart-values-eks.yaml -n bankapp
