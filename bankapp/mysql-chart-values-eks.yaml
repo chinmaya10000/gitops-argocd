@@ -26,7 +26,7 @@ metrics:
   serviceMonitor:
     enabled: true
     additionalLabels:
-      release: monitoring-stack
+      release: my-kube-prometheus-stack
 
 
 
