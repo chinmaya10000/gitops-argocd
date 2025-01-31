@@ -25,7 +25,7 @@ spec:
       - name: my-ecr-registry-key
       containers:
       - name: api
-        image: 156041433917.dkr.ecr.us-east-2.amazonaws.com/backend:v1
+        image: 156041433917.dkr.ecr.us-east-2.amazonaws.com/backend:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 3500
