@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: three-tier
+  labels:
+    role: api
+    env: demo
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      role: api
+  template:
+    metadata:
+      labels:
+        role: api
+    spec:
+      imagePullSecrets:
+      - name: my-ecr-registry-key
+      containers:
+      - name: api
+        image: 156041433917.dkr.ecr.us-east-2.amazonaws.com/backend:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3500
+        env:
+        - name: MONGO_CONN_STR
+          valueFrom: 
+            configMapKeyRef:
+              key: db_server
+              name: db-config
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: mongo-root-username
+              name: db-secret
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mongo-root-password
+              name: db-secret
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3500
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 3500
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+        startupProbe:
+          httpGet:
+            path: /started
+            port: 3500
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 30
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
