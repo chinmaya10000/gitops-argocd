@@ -31,10 +31,7 @@ spec:
         - containerPort: 3500
         env:
         - name: MONGO_CONN_STR
-          valueFrom: 
-            configMapKeyRef:
-              key: db_server
-              name: db-config
+          value: mongodb://mongodb-svc:27017/todo?directConnection=true
         - name: MONGO_USERNAME
           valueFrom:
             secretKeyRef:
