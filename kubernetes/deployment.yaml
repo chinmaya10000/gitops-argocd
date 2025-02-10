@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: solar-system
+  name: solar-system
+  namespace: solar-system
+spec:
+  selector:
+    matchLabels:
+      app: solar-system
+  template:
+    metadata:
+      labels:
+        app: solar-system
+    spec:
+      containers:
+      - name: solar-system
+        image: chinmayapradhan/orbit-engine:3e906e3be059342b1916f020c034344fb267ddca
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+          name: http 
+          protocol: TCP 
+        envFrom:
+        - secretRef:
+            name: mongo-db-creds
+
